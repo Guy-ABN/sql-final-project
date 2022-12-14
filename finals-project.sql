@@ -63,7 +63,8 @@ ALTER TABLE `article` ADD CONSTRAINT `number_of_words` CHECK (`number_of_words` 
 /*
  * 4. Retrieve the number of newspapers that are found within the Article table.
  */
-SELECT COUNT(DISTINCT newspaperNo) FROM article;
+SELECT COUNT(DISTINCT newspaperNo)
+FROM article;
 
 /*
  * 5. Give the name and address of all journalists who write articles in “Education” topic.
@@ -94,10 +95,9 @@ WHERE journalist.journalistNo NOT IN (SELECT journalistNo FROM writer);
  * name of the chief editor of this newspaper and his address.
  */
 SELECT article.articleNo, newspaper.newspaperName, journalist.journalistName, journalist.address
-FROM journalist, article, writer, newspaper
-WHERE journalist.journalistNo = writer.journalistNo
-AND article.articleNo = writer.articleNo
-AND article.newspaperNo = newspaper.newspaperNo
+FROM journalist, article, newspaper
+WHERE article.newspaperNo = newspaper.newspaperNo
+AND newspaper.journalistNo = journalist.journalistNo
 AND article.articleTopic = 'Politics';
 
 /*
@@ -109,6 +109,11 @@ WHERE journalist.journalistNo = writer.journalistNo
 AND writer.articleNo = article.articleNo
 AND article.newspaperNo = newspaper.newspaperNo
 AND newspaper.newspaperNo = 18;
+
+/* or */
+/* SELECT journalistName
+FROM journalist
+WHERE journalist.newspaperNo = 18; */
 
 /*
  * 10. Give the article number (articleNo) of articles that involves a journalist whose name
@@ -123,7 +128,7 @@ AND (journalist.journalistNo = 'Karim' OR newspaper.journalistNo = (SELECT journ
 
 /*
  * 11. Give the names of journalists who participate in writing two articles that belong to the
- *same newspaper.
+ * same newspaper.
  */
 SELECT journalist.journalistName
 FROM journalist, article, writer, newspaper
