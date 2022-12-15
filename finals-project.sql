@@ -110,11 +110,6 @@ AND writer.articleNo = article.articleNo
 AND article.newspaperNo = newspaper.newspaperNo
 AND newspaper.newspaperNo = 18;
 
-/* or */
-/* SELECT journalistName
-FROM journalist
-WHERE journalist.newspaperNo = 18; */
-
 /*
  * 10. Give the article number (articleNo) of articles that involves a journalist whose name
  * is “Karim” or belongs to a newspaper whose chief editor’s name is “Karim”.
