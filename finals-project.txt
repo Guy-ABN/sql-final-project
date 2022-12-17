@@ -115,7 +115,7 @@ FROM journalist, article, writer, newspaper
 WHERE journalist.journalistNo = writer.journalistNo
 AND writer.articleNo = article.articleNo
 AND article.newspaperNo = newspaper.newspaperNo
-AND journalist.journalistNo IN (SELECT journalistNo FROM writer GROUP BY journalistNo HAVING COUNT(journalistNo) > 1);
+AND journalist.journalistNo IN (SELECT journalistNo FROM writer GROUP BY journalistNo HAVING COUNT(journalistNo) = 1);
 
 12. Give the names of journalists who participate in writing an article that belongs to a
     newspaper different from their newspapers.
